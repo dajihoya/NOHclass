@@ -6,6 +6,6 @@
 - `seats.html` — 학급 자리 뽑기 (5×6, 30자리 무작위 배치)
 - `cleaning.html` — 학급 청소 당번 뽑기 (면제·고정 역할 지정 후 구역별 배정)
 
-수업 칸은 학생용 과학 사이트 노글라쓰티쳐의 과학교실([dajihoya/class1-7](https://github.com/dajihoya/class1-7))의 시뮬레이션으로 연결합니다. 학생용 사이트에는 학급 운영 메뉴가 보이지 않습니다.
+수업 칸은 학생용 과학 사이트 Science Class by Teacher 노글라쓰([dajihoya/class1-7](https://github.com/dajihoya/class1-7))의 시뮬레이션으로 연결합니다. 학생용 사이트에는 학급 운영 메뉴가 보이지 않습니다.
 
 학생 이름은 페이지에 저장되지 않습니다. 쓸 때마다 입력하거나 엑셀 파일로 불러옵니다.

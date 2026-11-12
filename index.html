@@ -58,7 +58,9 @@ a.item:hover .arrow{color:var(--c)}
 [hidden]{display:none!important}
 .big{position:fixed;inset:0;z-index:100;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;cursor:pointer}
 .big-label{margin:0;font-size:clamp(18px,3vw,30px);font-weight:700;color:var(--muted)}
-.big-url{margin:0;font-size:clamp(30px,7.5vw,92px);font-weight:800;color:#3730A3;letter-spacing:-.02em;word-break:break-all;line-height:1.15}
+.big-label .by{font-size:.62em;font-weight:600;white-space:nowrap}
+.big-url{margin:0;font-size:clamp(28px,5.8vw,84px);font-weight:800;color:#3730A3;letter-spacing:-.02em;line-height:1.15}
+.big-url span{white-space:nowrap}
 .big-hint{margin:12px 0 0;font-size:14px;color:#9CA3AF}
 @media (max-width:560px){.section{padding:16px}.sec-head h2{font-size:20px}.addr-url{font-size:16px}}
 @media (prefers-reduced-motion:reduce){a.item{transition:none}}
@@ -78,7 +80,7 @@ a.item:hover .arrow{color:var(--c)}
       <div><h2 id="secLesson">수업</h2><span class="sub">과학 시뮬레이션</span></div>
     </div>
     <div class="addr">
-      <div class="addr-txt"><span class="addr-label">노글라쓰티쳐의 과학교실 · 학생 수업 주소</span><a class="addr-url" href="https://dajihoya.github.io/class1-7/" target="_blank" rel="noopener">dajihoya.github.io/class1-7</a></div>
+      <div class="addr-txt"><span class="addr-label">Science Class by Teacher 노글라쓰 · 학생 수업 주소</span><a class="addr-url" href="https://dajihoya.github.io/class1-7/" target="_blank" rel="noopener">dajihoya.github.io/class1-7</a></div>
       <div class="addr-btns"><button type="button" id="copyAddr">주소 복사</button><button type="button" id="showAddr">크게 띄우기</button></div>
     </div>
 
@@ -138,9 +140,9 @@ a.item:hover .arrow{color:var(--c)}
   <p class="note">수업 시뮬레이션은 새 탭에서 열려요. 학급 운영 도구에 넣은 학생 이름은 어디에도 저장되지 않아요.</p>
 </div>
 
-<div class="big" id="big" hidden role="dialog" aria-label="노글라쓰티쳐의 과학교실 주소" tabindex="-1">
-  <p class="big-label">노글라쓰티쳐의 과학교실</p>
-  <p class="big-url">dajihoya.github.io/class1-7</p>
+<div class="big" id="big" hidden role="dialog" aria-label="Science Class by Teacher 노글라쓰 주소" tabindex="-1">
+  <p class="big-label">Science Class <small class="by">by Teacher 노글라쓰</small></p>
+  <p class="big-url"><span>dajihoya.github.io/</span><wbr><span>class1-7</span></p>
   <p class="big-hint">화면을 누르거나 Esc 키를 누르면 닫혀요</p>
 </div>
 <script>
