@@ -4,21 +4,31 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>노글라쓰의 업무자료실</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@kfonts/nanum-handwritting-gi-ppeumbalg-eum@0.2.0/index.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap">
 <style>
 :root{--ink:#1F2937;--muted:#6B7280;--line:#E5E7EB;--soft-line:#F1F2F4;
   --class:#10B981;--class-soft:#ECFDF5;--lesson:#6366F1;--lesson-soft:#EEF2FF;
-  --display:"Jua","Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-  --font:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",sans-serif;color-scheme:light}
+  --hand:'나눔손글씨 기쁨밝음','Nanum GiBbeumBarkEum','Gowun Dodum','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --display:var(--hand);--font:var(--hand);
+  --rule:#DCE5F3;--rule-strong:#A9BEE0;--margin:#F2AFC0;--mx:56px;color-scheme:light}
 *{box-sizing:border-box}
-html,body{margin:0;background:#ffffff;color:var(--ink)}
-body{background:#ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cg fill='none' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' opacity='.26'%3E%3Cg stroke='%2310B981' transform='translate(34 30)'%3E%3Cpath d='M4 0h16v12H4zM0 12h24v4H0zM4 16v12M20 16v12'/%3E%3C/g%3E%3Cg stroke='%230284C7' transform='translate(222 40)'%3E%3Cpath d='M16 0L10 14M5 13l11 5-2 4H2zM2 22l-2 8M6 22l-1 8M10 22v8'/%3E%3C/g%3E%3Cg stroke='%239CA3AF' transform='translate(132 132) rotate(-35)'%3E%3Cpath d='M0 0h30l6 4-6 4H0zM30 0v8M6 0v8'/%3E%3C/g%3E%3Cg stroke='%2310B981' transform='translate(240 214)'%3E%3Crect x='0' y='4' width='22' height='28' rx='3'/%3E%3Cpath d='M6 0h10v7H6zM5 19l4 4 7-8'/%3E%3C/g%3E%3Cg stroke='%230284C7' transform='translate(48 220)'%3E%3Cpath d='M0 6h20l-3 14H3zM20 6l8-6'/%3E%3C/g%3E%3C/g%3E%3Cg fill='%239CA3AF' opacity='.3'%3E%3Ccircle cx='170' cy='40' r='2'/%3E%3Ccircle cx='110' cy='270' r='2'/%3E%3Ccircle cx='290' cy='140' r='2'/%3E%3C/g%3E%3C/svg%3E");min-height:100vh;font-family:var(--font);font-size:16px;line-height:1.55;
-  padding:36px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
-.wrap{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
-.top h1{font-family:var(--display);font-size:clamp(30px,5vw,44px);font-weight:400;margin:0;line-height:1.2;word-break:keep-all}
-.top p{margin:4px 0 0;color:var(--muted)}
+html{margin:0;background:#fff}
+body{margin:0;color:var(--ink);min-height:100vh;font-family:var(--font);font-size:18px;line-height:1.55;background-color:#fff;
+  background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 31px,var(--rule) 31px,var(--rule) 32px)}
+body::before{content:"";position:fixed;top:0;bottom:0;left:var(--mx);width:2px;background:var(--margin);z-index:2;pointer-events:none}
+.note-head{position:relative;z-index:1;background:#fff;border-bottom:3px double var(--rule-strong);
+  padding:30px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+.note-head-in{max-width:900px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:6px 20px}
+.date{margin:0;font-size:20px;color:#6F82AE;white-space:nowrap}
+.date span{display:inline-block;min-width:7.5em;border-bottom:1px solid var(--rule-strong);padding:0 6px;text-align:center;color:var(--ink)}
+.wrap{position:relative;z-index:3;max-width:932px;margin:0 auto;display:flex;flex-direction:column;gap:22px;
+  padding:28px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px))}
+.top h1{font-family:var(--display);font-size:clamp(38px,6vw,56px);font-weight:400;margin:0;line-height:1.2;word-break:keep-all}
+.top p{margin:2px 0 0;color:var(--muted);font-size:19px}
 
 /* 큰 칸(세션) */
 .section{--c:var(--class);--soft:var(--class-soft);background:#fff;border:1px solid var(--line);border-top:5px solid var(--c);border-radius:16px;padding:20px 22px 22px;box-shadow:0 4px 16px rgba(15,23,42,.05)}
@@ -26,56 +36,60 @@ body{background:#ffffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/
 .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:16px}
 .sec-ico{width:42px;height:42px;border-radius:12px;background:var(--soft);display:grid;place-items:center;flex:none}
 .sec-ico svg{width:26px;height:26px}
-.sec-head h2{font-family:var(--display);font-size:24px;font-weight:400;margin:0;line-height:1.2}
-.sec-head .sub{font-size:13.5px;color:var(--muted)}
+.sec-head h2{font-family:var(--display);font-size:29px;font-weight:400;margin:0;line-height:1.2}
+.sec-head .sub{font-size:16px;color:var(--muted)}
 .sec-head .more{margin-left:auto;font-size:13.5px;font-weight:600;color:var(--c);text-decoration:none;white-space:nowrap}
 .sec-head .more:hover{text-decoration:underline}
 
 .group+.group{margin-top:16px}
-.group-label{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:15px;font-weight:400;color:#4B5563;margin:0 0 8px}
+.group-label{display:flex;align-items:center;gap:8px;font-family:var(--display);font-size:18.5px;font-weight:400;color:#4B5563;margin:0 0 8px}
 .group-label i{width:8px;height:8px;border-radius:50%;background:var(--dot)}
 
 /* 작은 칸(도구) */
 .items{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:10px}
+.txt span{white-space:normal}
 a.item{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;transition:border-color .15s,background .15s,transform .15s}
 a.item:hover{border-color:var(--c);background:var(--soft);transform:translateY(-1px)}
 a.item:focus-visible{outline:3px solid var(--c);outline-offset:2px}
 .badge{width:38px;height:38px;border-radius:10px;background:var(--bsoft,#F3F4F6);display:grid;place-items:center;flex:none}
 .badge svg{width:24px;height:24px}
 .txt{min-width:0;flex:1}
-.txt b{display:block;font-family:var(--display);font-size:17px;font-weight:400;line-height:1.3;word-break:keep-all}
-.txt span{display:block;font-size:13px;color:var(--muted);line-height:1.4;word-break:keep-all}
+.txt b{display:block;font-family:var(--display);font-size:20px;font-weight:400;line-height:1.3;word-break:keep-all}
+.txt span{display:block;font-size:15px;color:var(--muted);line-height:1.4;word-break:keep-all}
 .arrow{color:#9CA3AF;font-size:15px;flex:none}
 a.item:hover .arrow{color:var(--c)}
 
-.note{color:var(--muted);font-size:13px;margin:0}
+.note{color:var(--muted);font-size:16px;margin:0}
 .addr{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;background:var(--lesson-soft);border-radius:12px;padding:12px 14px;margin:-4px 0 16px}
 .addr-txt{display:flex;flex-direction:column;min-width:0}
-.addr-label{font-family:var(--display);font-size:13.5px;font-weight:400;color:#4338CA;word-break:keep-all}
-.addr-url{font-family:var(--display);font-size:21px;font-weight:400;color:var(--ink);text-decoration:none;word-break:break-all}
+.addr-label{font-family:var(--display);font-size:16px;font-weight:400;color:#4338CA;word-break:keep-all}
+.addr-url{font-family:var(--display);font-size:26px;font-weight:400;color:var(--ink);text-decoration:none}
+.addr-url span{white-space:nowrap}
 .addr-url:hover{color:var(--lesson)}
 .addr-btns{display:flex;gap:8px}
-.addr-btns button{font:inherit;font-family:var(--display);font-size:14.5px;font-weight:400;border-radius:8px;padding:7px 12px;cursor:pointer;border:1px solid #C7D2FE;background:#fff;color:#3730A3}
+.addr-btns button{font:inherit;font-family:var(--display);font-size:17.5px;font-weight:400;border-radius:8px;padding:6px 13px;cursor:pointer;border:1px solid #C7D2FE;background:#fff;color:#3730A3}
 .addr-btns button:hover{border-color:var(--lesson)}
 .addr-btns #showAddr{background:var(--lesson);border-color:var(--lesson);color:#fff}
 .addr-btns button:focus-visible{outline:3px solid var(--lesson);outline-offset:2px}
 [hidden]{display:none!important}
 .big{position:fixed;inset:0;z-index:100;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center;cursor:pointer}
-.big-label{margin:0;font-family:var(--display);font-size:clamp(20px,3vw,32px);font-weight:400;color:var(--muted)}
+.big-label{margin:0;font-family:var(--display);font-size:clamp(24px,3.6vw,40px);font-weight:400;color:var(--muted)}
 .big-label .by{font-size:.62em;white-space:nowrap}
 .big-url{margin:0;font-family:var(--display);font-size:clamp(28px,5.8vw,84px);font-weight:400;color:#3730A3;line-height:1.15}
 .big-url span{white-space:nowrap}
-.big-hint{margin:12px 0 0;font-size:14px;color:#9CA3AF}
-@media (max-width:560px){.section{padding:16px}.sec-head h2{font-size:22px}.addr-url{font-size:18px}}
+.big-hint{margin:12px 0 0;font-size:17px;color:#9CA3AF}
+@media (max-width:560px){:root{--mx:9px}.section{padding:16px}.sec-head h2{font-size:26px}.addr-url{font-size:22px}.date{font-size:18px}}
 @media (prefers-reduced-motion:reduce){a.item{transition:none}}
 </style>
 </head>
 <body>
+<header class="top note-head">
+  <div class="note-head-in">
+    <div><h1>노글라쓰의 업무자료실</h1><p>수업과 학급 운영을 한곳에서 열어요.</p></div>
+    <p class="date">Date. <span id="today"></span></p>
+  </div>
+</header>
 <div class="wrap">
-  <header class="top">
-    <h1>노글라쓰의 업무자료실</h1>
-    <p>수업과 학급 운영을 한곳에서 열어요.</p>
-  </header>
 
   <!-- 위: 수업 -->
   <section class="section lesson" aria-labelledby="secLesson">
@@ -84,14 +98,14 @@ a.item:hover .arrow{color:var(--c)}
       <div><h2 id="secLesson">수업</h2><span class="sub">과학 시뮬레이션</span></div>
     </div>
     <div class="addr">
-      <div class="addr-txt"><span class="addr-label">Science Class by Teacher 노글라쓰 · 학생 수업 주소</span><a class="addr-url" href="https://dajihoya.github.io/class1-7/" target="_blank" rel="noopener">dajihoya.github.io/class1-7</a></div>
+      <div class="addr-txt"><span class="addr-label">Science Class by Teacher 노글라쓰 · 학생 수업 주소</span><a class="addr-url" href="https://dajihoya.github.io/scienceclass/" target="_blank" rel="noopener"><span>dajihoya.github.io/</span><wbr><span>scienceclass</span></a></div>
       <div class="addr-btns"><button type="button" id="copyAddr">주소 복사</button><button type="button" id="showAddr">크게 띄우기</button></div>
     </div>
 
     <div class="group">
       <p class="group-label" style="--dot:#E3476A"><i></i>생명과학</p>
       <div class="items">
-        <a class="item" href="https://dajihoya.github.io/class1-7/life-science/nephron.html" target="_blank" rel="noopener">
+        <a class="item" href="https://dajihoya.github.io/scienceclass/life-science/nephron.html" target="_blank" rel="noopener">
           <span class="badge" style="--bsoft:#FFF1F4" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M38 6c11 0 20 10 20 25S50 58 38 58c-9 0-13-6-13-12 0-5 4-7 4-14s-4-9-4-14C25 11 29 6 38 6z" fill="#E3476A"/><path d="M24 30c-6 0-10 2-12 6" stroke="#E6B02A" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="37" cy="27" r="3" fill="#2A2140"/><circle cx="48" cy="27" r="3" fill="#2A2140"/><path d="M38 34q5 5 10 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span>
           <span class="txt"><b>콩팥단위 오줌 공장</b><span>여과·재흡수·분비 과정</span></span>
           <span class="arrow" aria-hidden="true">↗</span>
@@ -102,17 +116,17 @@ a.item:hover .arrow{color:var(--c)}
     <div class="group">
       <p class="group-label" style="--dot:#3B6FE0"><i></i>지구과학</p>
       <div class="items">
-        <a class="item" href="https://dajihoya.github.io/class1-7/earth-science/diurnal.html" target="_blank" rel="noopener">
+        <a class="item" href="https://dajihoya.github.io/scienceclass/earth-science/diurnal.html" target="_blank" rel="noopener">
           <span class="badge" style="--bsoft:#EEF2FF" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26a11 11 0 0 1 22 0M9 26a7 7 0 0 1 14 0" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M16 5l1.6 3.4 3.7.4-2.8 2.5.8 3.7-3.3-1.9-3.3 1.9.8-3.7-2.8-2.5 3.7-.4z" fill="#FBBF24" stroke="#92400E" stroke-width="1.2" stroke-linejoin="round"/><path d="M3 26h26" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round"/></svg></span>
           <span class="txt"><b>천체의 일주운동</b><span>천구 모형으로 하루 움직임 보기</span></span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="item" href="https://dajihoya.github.io/class1-7/earth-science/sun-annual.html" target="_blank" rel="noopener">
+        <a class="item" href="https://dajihoya.github.io/scienceclass/earth-science/sun-annual.html" target="_blank" rel="noopener">
           <span class="badge" style="--bsoft:#FFF7ED" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="17" rx="13" ry="6" fill="none" stroke="#9CA3AF" stroke-width="1.6" stroke-dasharray="3 3"/><circle cx="16" cy="17" r="5" fill="#FB923C" stroke="#9A3412" stroke-width="1.4"/><circle cx="27.5" cy="14" r="2.6" fill="#60A5FA" stroke="#1E3A8A" stroke-width="1.2"/></svg></span>
           <span class="txt"><b>태양의 연주운동</b><span>공전과 황도 12궁 별자리</span></span>
           <span class="arrow" aria-hidden="true">↗</span>
         </a>
-        <a class="item" href="https://dajihoya.github.io/class1-7/earth-science/moon-phases.html" target="_blank" rel="noopener">
+        <a class="item" href="https://dajihoya.github.io/scienceclass/earth-science/moon-phases.html" target="_blank" rel="noopener">
           <span class="badge" style="--bsoft:#1E2650" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M19 5a11 11 0 1 0 8 18 9 9 0 0 1-8-18z" fill="#FFE49A"/><circle cx="25" cy="8" r="1.2" fill="#fff"/><circle cx="8" cy="9" r="1" fill="#fff" opacity=".7"/></svg></span>
           <span class="txt"><b>달의 위상 변화 관찰</b><span>달 모양이 바뀌는 까닭</span></span>
           <span class="arrow" aria-hidden="true">↗</span>
@@ -146,12 +160,14 @@ a.item:hover .arrow{color:var(--c)}
 
 <div class="big" id="big" hidden role="dialog" aria-label="Science Class by Teacher 노글라쓰 주소" tabindex="-1">
   <p class="big-label">Science Class <small class="by">by Teacher 노글라쓰</small></p>
-  <p class="big-url"><span>dajihoya.github.io/</span><wbr><span>class1-7</span></p>
+  <p class="big-url"><span>dajihoya.github.io/</span><wbr><span>scienceclass</span></p>
   <p class="big-hint">화면을 누르거나 Esc 키를 누르면 닫혀요</p>
 </div>
 <script>
 (function () {
-  var URL_TEXT = 'https://dajihoya.github.io/class1-7/';
+  var d = new Date();
+  document.getElementById('today').textContent = d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + ' (' + '일월화수목금토'[d.getDay()] + ')';
+  var URL_TEXT = 'https://dajihoya.github.io/scienceclass/';
   var copyBtn = document.getElementById('copyAddr');
   function fallbackCopy() {
     var t = document.createElement('textarea');
