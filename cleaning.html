@@ -272,6 +272,140 @@
             text-align: center;
         }
 
+        /* ===== 청소 구역 설정 ===== */
+        .area-setup {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px dashed var(--line-dark);
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .section-head h3 {
+            font-weight: normal;
+            font-size: 1.2rem;
+        }
+
+        .area-total {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .area-total b {
+            display: inline-block;
+            min-width: 28px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background-color: var(--main-soft);
+            color: var(--main);
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .area-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .area-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 8px 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background-color: var(--card);
+        }
+
+        .area-no {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: var(--beige-soft);
+            color: var(--muted);
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .area-name {
+            flex: 1;
+            min-width: 0;
+            padding: 7px 10px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            background-color: var(--bg);
+            color: var(--ink);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .area-name:focus {
+            outline: none;
+            border-color: var(--main);
+            background-color: white;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .stepper button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background-color: var(--card);
+            color: var(--main);
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .stepper button:active { background-color: var(--main-soft); }
+
+        .stepper span {
+            min-width: 42px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .area-row .btn-icon { margin-left: 0; flex-shrink: 0; }
+
+        .area-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .area-hint {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            padding: 10px 14px;
+            border-radius: 14px;
+            background-color: var(--sage-soft);
+            color: var(--sage-d);
+        }
+
+        .area-hint.warn {
+            background-color: var(--butter-soft);
+            color: var(--butter-d);
+        }
+
         /* ===== 역할 지정 ===== */
         .roles-grid {
             display: grid;
@@ -825,6 +959,20 @@
                 </div>
                 <textarea id="namesInput" placeholder="이름을 입력하세요.&#10;줄바꿈(엔터)이나 쉼표(,)로 구분할 수 있어요."></textarea>
                 <div class="student-count">인식된 학생 수 <strong id="countDisplay">0</strong> 명 · 명단은 이 기기에 자동 저장돼요</div>
+
+                <div class="area-setup">
+                    <div class="section-head">
+                        <h3>🧹 청소 구역 · 인원</h3>
+                        <span class="area-total">정원 합계 <b id="areaTotal">0</b>명</span>
+                    </div>
+                    <p class="card-desc">구역 이름과 인원을 바꾸면 이 기기에 자동 저장돼요. 구역이 바뀌면 여기서 고치면 돼요.</p>
+                    <ul id="areaList" class="area-list"></ul>
+                    <div class="area-actions">
+                        <button class="btn-secondary btn-small" onclick="addArea()">➕ 구역 추가</button>
+                        <button class="btn-secondary btn-small" onclick="resetAreas()">↺ 기본 구역으로</button>
+                    </div>
+                    <p id="areaHint" class="area-hint"></p>
+                </div>
             </div>
 
             <div class="tab-panel hidden" id="panel-2">
@@ -928,8 +1076,8 @@
             <div class="sheet-fields">
                 <div><label for="sf-cls">반</label><input id="sf-cls" oninput="bindSheetField('cls', this.value)"></div>
                 <div><label for="sf-month">월</label><input id="sf-month" inputmode="numeric" oninput="bindSheetField('month', this.value)"></div>
-                <div><label for="sf-in">실내 관리 선생님</label><input id="sf-in" placeholder="이름 입력" oninput="bindSheetField('mgrIn', this.value)"></div>
-                <div><label for="sf-out">뒷동산 관리 선생님</label><input id="sf-out" placeholder="이름 입력" oninput="bindSheetField('mgrOut', this.value)"></div>
+                <div class="mgr-field"><label for="sf-in">실내 관리 선생님</label><input id="sf-in" placeholder="이름 입력" oninput="bindSheetField('mgrIn', this.value)"></div>
+                <div class="mgr-field"><label for="sf-out">뒷동산 관리 선생님</label><input id="sf-out" placeholder="이름 입력" oninput="bindSheetField('mgrOut', this.value)"></div>
             </div>
             <p class="hint">표 안의 글자도 눌러서 바로 고칠 수 있어요. 반·선생님 이름은 이 기기에 저장돼요.</p>
             <div class="results-actions">
@@ -957,6 +1105,7 @@
             updateDropdowns();
             saveNames();
             updateRoleStatus();
+            updateAreaHint();
         }
 
         // 명단 파싱 함수
@@ -1061,7 +1210,8 @@
         }
 
         // ===== 청소 구역 및 정원 =====
-        const CLEANING_TARGETS = [
+        // 기본 구역 (지금 학교 기준). 1번 탭에서 바꾸면 이 기기에 저장됨
+        const DEFAULT_TARGETS = [
             { title: "교실", limit: 6 },
             { title: "교실 복도", limit: 2 },
             { title: "계단", limit: 3 },
@@ -1072,6 +1222,17 @@
             { title: "뒷동산 (2층데크)", limit: 1 },
             { title: "뒷동산 (3층데크)", limit: 3 }
         ];
+        const AREAS_KEY = 'cleaningAreas_v1';
+        let CLEANING_TARGETS = loadAreas();
+
+        function loadAreas() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(AREAS_KEY) || 'null');
+                if (Array.isArray(saved) && saved.length > 0) return saved;
+            } catch (e) {}
+            return DEFAULT_TARGETS.map(t => ({ ...t }));
+        }
+
         const FIXED_TITLES = ["청소 면제", "분리수거", "청소용구함 및 전선 정리"];
 
         // ===== 지난 기록 저장 (이 기기 브라우저에 저장) =====
@@ -1130,7 +1291,7 @@
                 Object.entries(rec.assign).forEach(([name, area]) => {
                     (byArea[area] = byArea[area] || []).push(name);
                 });
-                const order = [...FIXED_TITLES, ...CLEANING_TARGETS.map(t => t.title)];
+                const order = [...new Set([...FIXED_TITLES, ...CLEANING_TARGETS.map(t => t.title), ...Object.keys(byArea)])];
                 const detailHtml = order
                     .filter(area => byArea[area])
                     .map(area => `<div><b>${escapeHtml(area)}</b> : ${byArea[area].map(escapeHtml).join(', ')}</div>`)
@@ -1176,7 +1337,6 @@
         // '결과 복사하기'로 복사해 둔 텍스트를 기록으로 불러오기
         function importHistory() {
             const text = document.getElementById('importInput').value;
-            const validTitles = [...FIXED_TITLES, ...CLEANING_TARGETS.map(t => t.title)];
             const assign = {};
             let currentArea = null;
 
@@ -1185,7 +1345,7 @@
                 const m = line.match(/^\[(.+?)\]/);
                 if (m) {
                     const title = m[1].replace(/^[^\p{L}\p{N}]+/u, '').trim();
-                    currentArea = validTitles.includes(title) ? title : null;
+                    currentArea = title || null;   // 예전에 쓰던 구역 이름도 그대로 받음
                     return;
                 }
                 if (currentArea) {
@@ -1350,7 +1510,7 @@
             // 5. 결과 데이터 구성
             finalResults = [];
             lastDraw = {};
-            sheetData = { exempt: exemptGroup, recycle: recycleGroup, equipment: equipmentGroup, areas: areaGroups };
+            sheetData = { exempt: exemptGroup, recycle: recycleGroup, equipment: equipmentGroup, areas: areaGroups, targets: CLEANING_TARGETS.map(t => ({ ...t })) };
             
             if (exemptGroup.length > 0) {
                 finalResults.push({ title: "✨ 청소 면제", type: "exempt", members: exemptGroup });
@@ -1462,7 +1622,6 @@
             const esc = escapeHtml;
             const names = list => list.map(esc).join(', ');
             const mgrLine = key => `(관리 : <span data-bind="${key}">${esc(st[key])}</span>)`;
-            const A = d.areas;   // CLEANING_TARGETS 순서
 
             // 이름을 한 칸씩 나눠 넣는 구역
             function gridBlock(label, list, cols, minCells, labelStyle = LABEL) {
@@ -1494,15 +1653,31 @@
                 return html + '</tr>';
             }
 
-            const rows =
-                gridBlock(`교실 (${A[0].length})<br>${mgrLine('mgrIn')}`, A[0], 3, 6) +
-                singleBlock(`교실 손걸레, 복도 유리<br>창틀, 칠판 (${A[3].length}) ${mgrLine('mgrIn')}`, A[3], LABEL_S) +
-                singleBlock(`복도 (${A[1].length})<br>${mgrLine('mgrIn')}`, A[1]) +
-                gridBlock(`계단 (${A[2].length})<br>${mgrLine('mgrIn')}`, A[2], 3, 3) +
-                splitBlock(`뒷동산 계단 (${A[4].length + A[5].length})<br>${mgrLine('mgrOut')}`,
-                    [{ label: '윗계단', list: A[4] }, { label: '아래계단', list: A[5] }]) +
-                splitBlock(`뒷동산 데크 (${A[6].length + A[7].length + A[8].length})<br>${mgrLine('mgrOut')}`,
-                    [{ label: '1층 데크', list: A[6] }, { label: '2층 데크', list: A[7] }, { label: '3층 데크', list: A[8] }]) +
+            let rows = '';
+            if (isSchoolLayout(d.targets)) {
+                // 지금 학교 양식 그대로 (구역 이름으로 찾아서 배치)
+                const byTitle = {};
+                d.targets.forEach((t, i) => byTitle[t.title] = d.areas[i]);
+                const A = DEFAULT_TARGETS.map(t => byTitle[t.title]);
+                rows =
+                    gridBlock(`교실 (${A[0].length})<br>${mgrLine('mgrIn')}`, A[0], 3, 6) +
+                    singleBlock(`교실 손걸레, 복도 유리<br>창틀, 칠판 (${A[3].length}) ${mgrLine('mgrIn')}`, A[3], LABEL_S) +
+                    singleBlock(`복도 (${A[1].length})<br>${mgrLine('mgrIn')}`, A[1]) +
+                    gridBlock(`계단 (${A[2].length})<br>${mgrLine('mgrIn')}`, A[2], 3, 3) +
+                    splitBlock(`뒷동산 계단 (${A[4].length + A[5].length})<br>${mgrLine('mgrOut')}`,
+                        [{ label: '윗계단', list: A[4] }, { label: '아래계단', list: A[5] }]) +
+                    splitBlock(`뒷동산 데크 (${A[6].length + A[7].length + A[8].length})<br>${mgrLine('mgrOut')}`,
+                        [{ label: '1층 데크', list: A[6] }, { label: '2층 데크', list: A[7] }, { label: '3층 데크', list: A[8] }]);
+            } else {
+                // 구역을 바꾼 경우: 구역마다 한 줄씩
+                d.targets.forEach((t, i) => {
+                    const list = d.areas[i];
+                    const n = Math.max(list.length, t.limit);
+                    const label = `${esc(t.title)} (${list.length})`;
+                    rows += n <= 1 ? singleBlock(label, list) : gridBlock(label, list, n === 2 || n === 4 ? 2 : 3, t.limit);
+                });
+            }
+            rows +=
                 singleBlock('청소용구함 및 TV 선 정리, 전원<br>관리, 휴대폰 함 관리', d.equipment) +
                 singleBlock('분리수거', d.recycle) +
                 singleBlock('출석부 정리 및 유인물 나눠주기', d.exempt);
@@ -1528,6 +1703,8 @@
             document.getElementById('sf-month').value = sheetSettings.month;
             document.getElementById('sf-in').value = sheetSettings.mgrIn;
             document.getElementById('sf-out').value = sheetSettings.mgrOut;
+            const school = isSchoolLayout(sheetData.targets);
+            document.querySelectorAll('.mgr-field').forEach(el => el.classList.toggle('hidden', !school));
 
             const page = document.getElementById('sheetPage');
             page.innerHTML = buildSheetHtml(sheetData, sheetSettings);
@@ -1666,7 +1843,117 @@
             updateRoleStatus();
         }
 
-        document.querySelectorAll('.role-select').forEach(sel => sel.addEventListener('change', updateRoleStatus));
+        document.querySelectorAll('.role-select').forEach(sel => sel.addEventListener('change', () => { updateRoleStatus(); updateAreaHint(); }));
+
+        // ===== 청소 구역 · 인원 설정 =====
+        function saveAreas() {
+            try { localStorage.setItem(AREAS_KEY, JSON.stringify(CLEANING_TARGETS)); } catch (e) {}
+        }
+
+        // 구역이 기본 구역 그대로면 학교 배정표 양식을 씀
+        function isSchoolLayout(targets) {
+            const titles = targets.map(t => t.title);
+            return titles.length === DEFAULT_TARGETS.length && DEFAULT_TARGETS.every(t => titles.includes(t.title));
+        }
+
+        function renderAreas() {
+            const list = document.getElementById('areaList');
+            list.innerHTML = '';
+            CLEANING_TARGETS.forEach((t, i) => {
+                const li = document.createElement('li');
+                li.className = 'area-row';
+                li.innerHTML = `
+                    <span class="area-no">${i + 1}</span>
+                    <input class="area-name" value="${escapeHtml(t.title)}" placeholder="구역 이름" onchange="renameArea(${i}, this)">
+                    <div class="stepper">
+                        <button aria-label="인원 줄이기" onclick="changeLimit(${i}, -1)">−</button>
+                        <span>${t.limit}명</span>
+                        <button aria-label="인원 늘리기" onclick="changeLimit(${i}, 1)">+</button>
+                    </div>
+                    <button class="btn-icon" title="구역 삭제" aria-label="구역 삭제" onclick="removeArea(${i})">✕</button>`;
+                list.appendChild(li);
+            });
+            updateAreaHint();
+        }
+
+        function renameArea(i, input) {
+            const name = input.value.trim();
+            if (!name) {
+                input.value = CLEANING_TARGETS[i].title;
+                showToast("구역 이름을 입력해 주세요.");
+                return;
+            }
+            if (CLEANING_TARGETS.some((t, k) => k !== i && t.title === name)) {
+                input.value = CLEANING_TARGETS[i].title;
+                showToast("같은 이름의 구역이 이미 있어요.");
+                return;
+            }
+            CLEANING_TARGETS[i].title = name;
+            input.value = name;
+            saveAreas();
+        }
+
+        function changeLimit(i, delta) {
+            const next = CLEANING_TARGETS[i].limit + delta;
+            if (next < 1 || next > 30) return;
+            CLEANING_TARGETS[i].limit = next;
+            saveAreas();
+            renderAreas();
+        }
+
+        function removeArea(i) {
+            if (CLEANING_TARGETS.length <= 1) { showToast("구역은 하나 이상 있어야 해요."); return; }
+            const removed = CLEANING_TARGETS.splice(i, 1)[0];
+            saveAreas();
+            renderAreas();
+            showToast(`‘${removed.title}’ 구역을 지웠어요.`);
+        }
+
+        function addArea() {
+            let n = CLEANING_TARGETS.length + 1, title = `새 구역 ${n}`;
+            while (CLEANING_TARGETS.some(t => t.title === title)) title = `새 구역 ${++n}`;
+            CLEANING_TARGETS.push({ title, limit: 1 });
+            saveAreas();
+            renderAreas();
+            const inputs = document.querySelectorAll('#areaList .area-name');
+            const last = inputs[inputs.length - 1];
+            last.focus();
+            last.select();
+        }
+
+        function resetAreas() {
+            if (!confirm("기본 구역 9곳(교실, 교실 복도, 계단 …)으로 되돌릴까요?")) return;
+            CLEANING_TARGETS = DEFAULT_TARGETS.map(t => ({ ...t }));
+            saveAreas();
+            renderAreas();
+            showToast("기본 구역으로 되돌렸어요.");
+        }
+
+        // 정원 합계와 실제 청소할 학생 수 비교
+        function updateAreaHint() {
+            const total = CLEANING_TARGETS.reduce((sum, t) => sum + t.limit, 0);
+            document.getElementById('areaTotal').textContent = total;
+
+            const hint = document.getElementById('areaHint');
+            hint.classList.remove('warn');
+            const names = [...new Set(getNamesList())];
+            if (names.length === 0) {
+                hint.textContent = '💡 명단을 입력하면 청소할 학생 수와 정원을 비교해 알려 드려요.';
+                return;
+            }
+            const roles = new Set(ROLE_IDS.map(id => document.getElementById(id).value).filter(v => v && names.includes(v)));
+            const pool = names.length - roles.size;
+            const diff = pool - total;
+            if (diff === 0) {
+                hint.textContent = `✔ 청소할 학생 ${pool}명과 구역 정원이 딱 맞아요.`;
+            } else if (diff > 0) {
+                hint.classList.add('warn');
+                hint.textContent = `청소할 학생이 ${pool}명이라 정원보다 ${diff}명 많아요. 남는 학생은 위 구역부터 한 명씩 더 들어가요.`;
+            } else {
+                hint.classList.add('warn');
+                hint.textContent = `청소할 학생이 ${pool}명이라 정원보다 ${-diff}명 적어요. 인원이 많은 구역부터 한 자리씩 비어요.`;
+            }
+        }
 
         // ===== 탭 =====
         const TAB_KEY = 'cleaningTab_v1';
@@ -1684,6 +1971,7 @@
         loadHistory();
         renderHistory();
         restoreSaved();
+        renderAreas();
 
         // 최신 클립보드 API 및 하위 호환 적용 완료
         async function copyToClipboard() {
