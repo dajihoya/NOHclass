@@ -78,7 +78,20 @@ a.card:focus-visible{outline:3px solid #5B4BC4;outline-offset:3px}
 .pic svg{width:27px;height:27px}
 a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-webkit-text-stroke:.5px currentColor}
 .foot{color:var(--muted);font-size:17.5px;margin:0;word-break:keep-all}
-.board .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
+.board .cards{grid-template-columns:repeat(auto-fill,minmax(min(100%,178px),1fr));gap:20px 12px}
+/* 수업 자료: 작은 네모 + 물화생지 가로 탭 */
+.board a.card{padding:14px 10px 10px}
+.board a.card b{font-size:18px}
+.board .pic{width:32px;height:32px;border-radius:9px}.board .pic svg{width:22px;height:22px}.board .hd{gap:8px}
+.board{gap:20px}
+.ltabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid rgba(244,241,230,.22)}
+.ltab{font:inherit;font-size:21px;line-height:1.3;color:var(--chalk-dim);background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-2px;padding:4px 14px 8px;cursor:pointer}
+.ltab[aria-selected="true"]{color:var(--chalk);border-bottom-color:var(--tc)}
+.ltab .n{font-size:15px;margin-left:4px;color:var(--chalk-dim)}
+.ltab:focus-visible{outline:3px solid #FFE08A;outline-offset:2px;border-radius:6px}
+.board .sub > h3{display:none}
+.board .sub[hidden]{display:none}
+.board .empty{color:var(--chalk-dim);margin:0;font-size:18px}
 
 @media (max-width:560px){
   :root{--mx:9px}
@@ -90,6 +103,8 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
   .cards,.board .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}
   a.card{padding:17px 10px 12px}
   a.card b{font-size:19px}
+  .board a.card b{font-size:16.5px}
+  .ltab{font-size:18px;padding:4px 10px 8px}
   .pic{width:34px;height:34px}.pic svg{width:23px;height:23px}.hd{gap:8px}
 }
 @media (prefers-reduced-motion:reduce){a.card{transition:none}}
@@ -105,14 +120,17 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
   <section class="row lesson" aria-labelledby="hLesson">
     <h2 id="hLesson"><a class="hlink" href="https://dajihoya.github.io/scienceclass/" target="_blank" rel="noopener"><span class="badge" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M5 9c4.5-2.4 9-2.4 13 .8v19.4c-4-3-8.5-3.2-13-.8z" fill="#C7D2FE" stroke="#2b2f55" stroke-width="1.8" stroke-linejoin="round"/><path d="M31 9c-4.5-2.4-9-2.4-13 .8v19.4c4-3 8.5-3.2 13-.8z" fill="#E0E7FF" stroke="#2b2f55" stroke-width="1.8" stroke-linejoin="round"/><path d="M8.5 14c2.5-.9 5-.8 7 .4M8.5 18.5c2.5-.9 5-.8 7 .4" stroke="#6366F1" stroke-width="1.4" stroke-linecap="round" fill="none"/></svg></span><span class="t">수업 자료</span><span class="ext" aria-hidden="true">↗</span></a><span class="line" aria-hidden="true"></span></h2>
     <div class="board">
-      <section class="sub" aria-labelledby="hLife">
+      <div class="ltabs" id="lessonTabs" role="tablist" aria-label="과목"></div>
+      <section class="sub" data-topic="physics"><div class="cards"></div></section>
+      <section class="sub" data-topic="chemistry"><div class="cards"></div></section>
+      <section class="sub" data-topic="life-science" aria-labelledby="hLife">
         <h3 id="hLife"><span class="badge" aria-hidden="true"><svg viewBox="0 0 36 36"><path d="M18 31C10 25 5 20.5 5 14.5 5 10.5 8 7.5 12 7.5c2.6 0 4.7 1.4 6 3.5 1.3-2.1 3.4-3.5 6-3.5 4 0 7 3 7 7 0 6-5 10.5-13 16.5z" fill="#ff7a96" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/><path d="M9.5 15.5q0-3.5 3.5-4.5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" opacity=".9"/></svg></span>생명과학<span class="line" aria-hidden="true"></span></h3>
         <div class="cards">
         <a class="card" href="https://dajihoya.github.io/scienceclass/life-science/heart.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#FFEDEA" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M26 15V6M38 14V5" stroke="#3E63B8" stroke-width="5" stroke-linecap="round"/><path d="M32 57S8 43 8 26C8 17 14 11 21.5 11c4.6 0 8.2 2.6 10.5 6 2.3-3.4 5.9-6 10.5-6C50 11 56 17 56 26c0 17-24 31-24 31z" fill="#D9473D"/><path d="M45 9c6 2 8 7 7 12" stroke="#D9473D" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="24" cy="29" r="3" fill="#2A2140"/><circle cx="40" cy="29" r="3" fill="#2A2140"/><path d="M27 36q5 5 10 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="19" cy="35" r="2.6" fill="#FFB3C4"/><circle cx="45" cy="35" r="2.6" fill="#FFB3C4"/></svg></span><b data-sync="heart">심장의 구조와 기능 3D 시뮬레이션</b></span></a>
         <a class="card" href="https://dajihoya.github.io/scienceclass/life-science/nephron.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#FFF1F4" aria-hidden="true"><svg viewBox="0 0 64 64"><path d="M38 6c11 0 20 10 20 25S50 58 38 58c-9 0-13-6-13-12 0-5 4-7 4-14s-4-9-4-14C25 11 29 6 38 6z" fill="#E3476A"/><path d="M24 30c-6 0-10 2-12 6" stroke="#E6B02A" stroke-width="5" fill="none" stroke-linecap="round"/><circle cx="37" cy="27" r="3" fill="#2A2140"/><circle cx="48" cy="27" r="3" fill="#2A2140"/><path d="M38 34q5 5 10 0" stroke="#2A2140" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="33" cy="33" r="2.6" fill="#FFB3C4"/><circle cx="52" cy="33" r="2.6" fill="#FFB3C4"/></svg></span><b data-sync="nephron">콩팥의 구조와 기능</b></span></a>
         </div>
       </section>
-      <section class="sub earth" aria-labelledby="hEarth">
+      <section class="sub earth" data-topic="earth-science" aria-labelledby="hEarth">
         <h3 id="hEarth"><span class="badge" aria-hidden="true"><svg viewBox="0 0 36 36"><circle cx="14" cy="21" r="10" fill="#9bb8ff" stroke="#2b2f55" stroke-width="2"/><path d="M8.5 16.5C10 14 13.5 13.5 15 15.5 16 17 14.5 18.5 15.5 20 16.5 21.5 14 23.5 12.5 22.5 11 21.5 10.5 20 9 20 7.5 20 7.5 18 8.5 16.5z" fill="#7fd39b" stroke="#2b2f55" stroke-width="1.4" stroke-linejoin="round"/><path d="M17 25C19 23.5 21.5 24 22 25.5 22.5 27 21 29 19.5 28.5 18 28 16 26.5 17 25z" fill="#7fd39b" stroke="#2b2f55" stroke-width="1.4" stroke-linejoin="round"/><path d="M27 2.5 28.76 7.07 33.66 7.34 29.85 10.43 31.11 15.16 27 12.5 22.89 15.16 24.15 10.43 20.34 7.34 25.24 7.07z" fill="#ffd166" stroke="#2b2f55" stroke-width="1.6" stroke-linejoin="round"/></svg></span>지구과학<span class="line" aria-hidden="true"></span></h3>
         <div class="cards">
         <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/diurnal.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#EEF2FF" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 26a11 11 0 0 1 22 0M9 26a7 7 0 0 1 14 0" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 3"/><path d="M16 5l1.6 3.4 3.7.4-2.8 2.5.8 3.7-3.3-1.9-3.3 1.9.8-3.7-2.8-2.5 3.7-.4z" fill="#FBBF24" stroke="#92400E" stroke-width="1.2" stroke-linejoin="round"/><path d="M3 26h26" stroke="#4B5563" stroke-width="1.8" stroke-linecap="round"/></svg></span><b data-sync="diurnal">천체의 일주운동</b></span></a>
@@ -146,7 +164,31 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 <script>
 /* 수업 자료: 수업페이지 첫 화면의 시뮬레이션 목록을 그때그때 불러와 카드로 보여 줌 */
 (function () {
-  var BASE = 'https://dajihoya.github.io/scienceclass/', MAP = { 'life-science': 'hLife', 'earth-science': 'hEarth' };
+  var BASE = 'https://dajihoya.github.io/scienceclass/';
+  var TOPICS = [['physics', '물리', '#FFC48C'], ['chemistry', '화학', '#B9E58C'], ['life-science', '생명과학', '#FF9DB5'], ['earth-science', '지구과학', '#9CC4FF']];
+  var bar = document.getElementById('lessonTabs'), cur = null;
+  try { cur = localStorage.getItem('noh-lesson-tab'); } catch (e) {}
+  function paneOf(t) { return document.querySelector('.board .sub[data-topic="' + t + '"]'); }
+  function buildTabs() {
+    bar.textContent = '';
+    var counts = TOPICS.map(function (t) { var p = paneOf(t[0]); return p ? p.querySelectorAll('a.card').length : 0; });
+    if (!cur || TOPICS.every(function (t) { return t[0] !== cur; })) { var k = counts.findIndex(function (c) { return c > 0; }); cur = TOPICS[k < 0 ? 0 : k][0]; }
+    TOPICS.forEach(function (t, i) {
+      var p = paneOf(t[0]), cards = p.querySelector('.cards'), em = p.querySelector('.empty');
+      if (!counts[i] && !em) { em = document.createElement('p'); em.className = 'empty'; em.textContent = '아직 올린 자료가 없어요.'; p.appendChild(em); }
+      if (counts[i] && em) em.remove();
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ltab'; b.setAttribute('role', 'tab'); b.style.setProperty('--tc', t[2]);
+      b.innerHTML = t[1] + (counts[i] ? '<span class="n">' + counts[i] + '</span>' : '');
+      b.onclick = function () { cur = t[0]; try { localStorage.setItem('noh-lesson-tab', cur); } catch (e) {} show(); };
+      bar.appendChild(b);
+    });
+    show();
+  }
+  function show() {
+    TOPICS.forEach(function (t, i) { paneOf(t[0]).hidden = t[0] !== cur; bar.children[i].setAttribute('aria-selected', t[0] === cur ? 'true' : 'false'); });
+  }
+  buildTabs();
   fetch(BASE + '?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : null; }).then(function (txt) {
     if (!txt) return;
     var doc = new DOMParser().parseFromString(txt, 'text/html'), groups = {};
@@ -158,9 +200,10 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
       (groups[n.dataset.topic] = groups[n.dataset.topic] || []).push(a);
     });
     Object.keys(groups).forEach(function (t) {
-      var sec = MAP[t] && document.querySelector('[aria-labelledby="' + MAP[t] + '"] .cards');
+      var p = paneOf(t), sec = p && p.querySelector('.cards');
       if (sec) sec.replaceChildren.apply(sec, groups[t]);
     });
+    buildTabs();
   }).catch(function () {});
 })();
 </script>
