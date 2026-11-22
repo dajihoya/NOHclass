@@ -118,6 +118,8 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
         <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/sun-annual.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#FFF7ED" aria-hidden="true"><svg viewBox="0 0 32 32"><ellipse cx="16" cy="17" rx="13" ry="6" fill="none" stroke="#9CA3AF" stroke-width="1.6" stroke-dasharray="3 3"/><circle cx="16" cy="17" r="5" fill="#FB923C" stroke="#9A3412" stroke-width="1.4"/><circle cx="27.5" cy="14" r="2.6" fill="#60A5FA" stroke="#1E3A8A" stroke-width="1.2"/></svg></span><b data-sync="sun-annual">태양의 연주운동</b></span></a>
         <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/moon-phases.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#1E2650" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M19 5a11 11 0 1 0 8 18 9 9 0 0 1-8-18z" fill="#FFE49A"/><circle cx="25" cy="8" r="1.2" fill="#fff"/><circle cx="8" cy="9" r="1" fill="#fff" opacity=".7"/></svg></span><b data-sync="moon-phases">달의 위상 변화 관찰</b></span></a>
         <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/eclipse.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#FFF4DC" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="13.5" cy="16" r="9" fill="#FBBF24" stroke="#B45309" stroke-width="1.3"/><circle cx="19.5" cy="16" r="8" fill="#2B2F55"/><circle cx="22" cy="13" r="1.1" fill="#fff" opacity=".75"/></svg></span><b data-sync="eclipse">일식과 월식 시뮬레이션</b></span></a>
+        <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/light-distance.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#FBF3DF" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M17 16h12" stroke="#CBA258" stroke-width="1.6" stroke-dasharray="2 2.5" stroke-linecap="round"/><path d="M17 12l10-5M17 20l10 5" stroke="#CBA258" stroke-width="1.4" stroke-dasharray="2 2.5" stroke-linecap="round"/><circle cx="11" cy="14" r="7" fill="#FFF4C7" stroke="#B08A3E" stroke-width="1.3"/><path d="M8.2 13.5q1.3-1.6 2.6 0M11.4 13.5q1.3-1.6 2.6 0" stroke="#5A4520" stroke-width="1.2" fill="none" stroke-linecap="round"/><path d="M9.8 16.2q1.2 1.2 2.4 0" stroke="#5A4520" stroke-width="1.1" fill="none" stroke-linecap="round"/><rect x="8.5" y="21" width="5" height="4" rx="1" fill="#D9DCE2"/><rect x="7" y="25" width="8" height="2.5" rx="1.2" fill="#C2C6CF"/></svg></span><b data-sync="light-distance">광원으로부터의 거리에 따른 빛의 밝기</b></span></a>
+        <a class="card" href="https://dajihoya.github.io/scienceclass/earth-science/star-distance.html" target="_blank" rel="noopener"><span class="hd"><span class="pic" style="--bsoft:#E4F0EA" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M8 25L16 9l8 16" fill="none" stroke="#00704A" stroke-width="1.4" stroke-dasharray="2 2.2" stroke-linecap="round"/><path d="M16 4.5l1.5 3.1 3.4.4-2.5 2.3.7 3.4-3.1-1.8-3.1 1.8.7-3.4-2.5-2.3 3.4-.4z" fill="#CBA258" stroke="#8C6A2A" stroke-width="1" stroke-linejoin="round"/><circle cx="8" cy="25" r="3.2" fill="#6FB3D9" stroke="#1E3932" stroke-width="1.1"/><circle cx="24" cy="25" r="3.2" fill="#6FB3D9" stroke="#1E3932" stroke-width="1.1" opacity=".55"/><path d="M14.2 13.2q1.8 1.2 3.6 0" stroke="#CBA258" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg></span><b data-sync="star-distance">별까지의 거리</b></span></a>
         </div>
       </section>
     </div>
@@ -138,6 +140,27 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 (function () {
   var d = new Date();
   document.getElementById('today').textContent = d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + ' (' + '일월화수목금토'[d.getDay()] + ')';
+})();
+</script>
+<script>
+/* 수업 자료: 수업페이지 첫 화면의 시뮬레이션 목록을 그때그때 불러와 카드로 보여 줌 */
+(function () {
+  var BASE = 'https://dajihoya.github.io/scienceclass/', MAP = { 'life-science': 'hLife', 'earth-science': 'hEarth' };
+  fetch(BASE + '?t=' + Date.now(), { cache: 'no-store' }).then(function (r) { return r.ok ? r.text() : null; }).then(function (txt) {
+    if (!txt) return;
+    var doc = new DOMParser().parseFromString(txt, 'text/html'), groups = {};
+    doc.querySelectorAll('a.note[data-topic]').forEach(function (n) {
+      var hd = n.querySelector('.hd'); if (!hd) return;
+      var a = document.createElement('a');
+      a.className = 'card'; a.href = BASE + n.getAttribute('href'); a.target = '_blank'; a.rel = 'noopener';
+      a.appendChild(document.importNode(hd, true));
+      (groups[n.dataset.topic] = groups[n.dataset.topic] || []).push(a);
+    });
+    Object.keys(groups).forEach(function (t) {
+      var sec = MAP[t] && document.querySelector('[aria-labelledby="' + MAP[t] + '"] .cards');
+      if (sec) sec.replaceChildren.apply(sec, groups[t]);
+    });
+  }).catch(function () {});
 })();
 </script>
 </body>
