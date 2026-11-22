@@ -101,8 +101,8 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 .board .ggrp.fold .cards{display:none}
 /* 물화생지: 인덱스 탭 */
 .ltabs{gap:5px;border-bottom:0;flex-wrap:nowrap;margin-bottom:-20px}
-.ltab{opacity:1;align-self:flex-end;gap:7px;font-size:20px;color:#1E2236;-webkit-text-stroke:.6px currentColor;background:var(--tc);border:0;border-radius:12px 12px 0 0;margin:0;padding:6px 13px 7px 7px}
-.ltab[aria-selected="true"]{padding-top:11px;box-shadow:0 -3px 8px rgba(0,0,0,.18)}
+.ltab{opacity:1;align-self:flex-end;gap:7px;font-size:20px;color:#1E2236;-webkit-text-stroke:.6px currentColor;background:var(--tc);border:0;border-top:7px solid var(--tt);border-radius:3px 3px 0 0;box-shadow:1px -1px 3px rgba(0,0,0,.2);margin:0;padding:5px 13px 7px 7px}
+.ltab[aria-selected="true"]{padding-top:10px;box-shadow:0 -3px 8px rgba(0,0,0,.18)}
 .ltabs{align-items:flex-end}
 .ltab .badge{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.6);-webkit-text-stroke:0}
 .ltab .badge svg{width:20px;height:20px}
@@ -185,6 +185,7 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 /* 수업 자료: 수업페이지 첫 화면의 시뮬레이션 목록을 그때그때 불러와 카드로 보여 줌 */
 (function () {
   var BASE = 'https://dajihoya.github.io/scienceclass/';
+  var TIP = { '#F3E4D6': '#E2A574', '#E1EBD9': '#98BE7C', '#F2DEE3': '#E094A7', '#DCE5F0': '#88A4D0', '#F1EAD3': '#D8BD6E' };
   var TOPICS = [['physics', '물리', '#F3E4D6'], ['chemistry', '화학', '#E1EBD9'], ['life-science', '생명과학', '#F2DEE3'], ['earth-science', '지구과학', '#DCE5F0']];
   var ICONS = {
     'physics': '<svg viewBox="0 0 36 36"><path d="M20.5 3 8 20h9l-2 13 13-18h-9z" fill="#FFC48C" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/></svg>',
@@ -202,7 +203,7 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
       if (!counts[i] && !em) { em = document.createElement('p'); em.className = 'empty'; em.textContent = '아직 올린 자료가 없어요.'; p.appendChild(em); }
       if (counts[i] && em) em.remove();
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'ltab'; b.setAttribute('role', 'tab'); b.style.setProperty('--tc', t[2]);
+      b.type = 'button'; b.className = 'ltab'; b.setAttribute('role', 'tab'); b.style.setProperty('--tc', t[2]); b.style.setProperty('--tt', TIP[t[2]]);
       var bd = p.querySelector('h3 .badge'); b.innerHTML = '<span class="badge" aria-hidden="true">' + (bd ? bd.innerHTML : ICONS[t[0]]) + '</span>' + t[1];
       b.onclick = function () { cur = t[0]; try { localStorage.setItem('noh-lesson-tab', cur); } catch (e) {} show(); };
       bar.appendChild(b);
