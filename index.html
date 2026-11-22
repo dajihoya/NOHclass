@@ -85,9 +85,10 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 .board .pic{width:32px;height:32px;border-radius:9px}.board .pic svg{width:22px;height:22px}.board .hd{gap:8px}
 .board{gap:20px}
 .ltabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid rgba(244,241,230,.22)}
-.ltab{font:inherit;font-size:21px;line-height:1.3;color:var(--chalk-dim);background:none;border:0;border-bottom:4px solid transparent;margin-bottom:-2px;padding:4px 14px 8px;cursor:pointer}
-.ltab[aria-selected="true"]{color:var(--chalk);border-bottom-color:var(--tc)}
-.ltab .n{font-size:15px;margin-left:4px;color:var(--chalk-dim)}
+.ltab{display:flex;align-items:center;gap:10px;font:inherit;font-weight:400;font-size:29px;line-height:1.2;color:var(--chalk);-webkit-text-stroke:.5px currentColor;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:4px 12px 10px 4px;cursor:pointer;opacity:.5}
+.ltab[aria-selected="true"]{opacity:1;border-bottom-color:var(--tc)}
+.ltab .badge{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none;-webkit-text-stroke:0}
+.ltab .badge svg{width:28px;height:28px}
 .ltab:focus-visible{outline:3px solid #FFE08A;outline-offset:2px;border-radius:6px}
 .board .sub > h3{display:none}
 .board .sub[hidden]{display:none}
@@ -104,7 +105,8 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
   a.card{padding:17px 10px 12px}
   a.card b{font-size:19px}
   .board a.card b{font-size:16.5px}
-  .ltab{font-size:18px;padding:4px 10px 8px}
+  .ltab{font-size:22px;gap:7px;padding:4px 6px 8px 2px}
+  .ltab .badge{width:32px;height:32px;border-radius:10px}.ltab .badge svg{width:22px;height:22px}
   .pic{width:34px;height:34px}.pic svg{width:23px;height:23px}.hd{gap:8px}
 }
 @media (prefers-reduced-motion:reduce){a.card{transition:none}}
@@ -166,6 +168,10 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 (function () {
   var BASE = 'https://dajihoya.github.io/scienceclass/';
   var TOPICS = [['physics', '물리', '#FFC48C'], ['chemistry', '화학', '#B9E58C'], ['life-science', '생명과학', '#FF9DB5'], ['earth-science', '지구과학', '#9CC4FF']];
+  var ICONS = {
+    'physics': '<svg viewBox="0 0 36 36"><path d="M20.5 3 8 20h9l-2 13 13-18h-9z" fill="#FFC48C" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/></svg>',
+    'chemistry': '<svg viewBox="0 0 36 36"><path d="M14 5v9L6.5 27.5Q5 32 10 32h16q5 0 3.5-4.5L22 14V5z" fill="#fff" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/><path d="M9.6 22h16.8l2.6 5.5Q30 31 26 31H10q-4 0-3-3.5z" fill="#B9E58C"/><path d="M12 4.5h12" stroke="#2b2f55" stroke-width="2.4" stroke-linecap="round"/></svg>'
+  };
   var bar = document.getElementById('lessonTabs'), cur = null;
   try { cur = localStorage.getItem('noh-lesson-tab'); } catch (e) {}
   function paneOf(t) { return document.querySelector('.board .sub[data-topic="' + t + '"]'); }
@@ -179,7 +185,7 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
       if (counts[i] && em) em.remove();
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'ltab'; b.setAttribute('role', 'tab'); b.style.setProperty('--tc', t[2]);
-      b.innerHTML = t[1] + (counts[i] ? '<span class="n">' + counts[i] + '</span>' : '');
+      var bd = p.querySelector('h3 .badge'); b.innerHTML = '<span class="badge" aria-hidden="true">' + (bd ? bd.innerHTML : ICONS[t[0]]) + '</span>' + t[1];
       b.onclick = function () { cur = t[0]; try { localStorage.setItem('noh-lesson-tab', cur); } catch (e) {} show(); };
       bar.appendChild(b);
     });
