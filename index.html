@@ -93,10 +93,12 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 .board .sub > h3{display:none}
 .board .sub[hidden]{display:none}
 /* 물화생지: 인덱스 탭 */
-.ltabs{gap:4px;border-bottom:0;flex-wrap:nowrap;margin-bottom:-20px}
-.ltab{opacity:1;color:var(--chalk-dim);background:rgba(0,0,0,.24);border:0;border-top:4px solid var(--tc);border-radius:14px 14px 0 0;margin:0;padding:9px 16px 10px 10px}
-.ltab[aria-selected="true"]{color:var(--chalk);background:rgba(244,241,230,.1)}
-.ltab:not([aria-selected="true"]) .badge svg{opacity:.6}
+.ltabs{gap:5px;border-bottom:0;flex-wrap:nowrap;margin-bottom:-20px}
+.ltab{opacity:1;align-self:flex-end;gap:7px;font-size:20px;color:#2b2f55;-webkit-text-stroke:0;background:var(--tc);border:0;border-radius:12px 12px 0 0;margin:0;padding:6px 13px 7px 7px}
+.ltab[aria-selected="true"]{padding-top:11px;box-shadow:0 -3px 8px rgba(0,0,0,.18)}
+.ltabs{align-items:flex-end}
+.ltab .badge{width:28px;height:28px;border-radius:8px;background:rgba(255,255,255,.55)}
+.ltab .badge svg{width:20px;height:20px}
 .board .sub{background:rgba(244,241,230,.1);border-radius:0 14px 14px 14px;padding:30px 16px 20px}
 .board .empty{color:var(--chalk-dim);margin:0;font-size:18px}
 
@@ -113,7 +115,7 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
   .board a.card b{font-size:16.5px}
   .ltab{font-size:22px;gap:7px;padding:4px 6px 8px 2px}
   .ltab .badge{width:32px;height:32px;border-radius:10px}.ltab .badge svg{width:22px;height:22px}
-  .ltab{font-size:18px;padding:8px 9px 9px;flex:1;justify-content:center}
+  .ltab{font-size:16.5px;padding:6px 6px 7px;flex:1;justify-content:center}
   .ltab .badge{display:none}
   .board .sub{padding:28px 10px 16px}
   .pic{width:34px;height:34px}.pic svg{width:23px;height:23px}.hd{gap:8px}
@@ -176,7 +178,7 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 /* 수업 자료: 수업페이지 첫 화면의 시뮬레이션 목록을 그때그때 불러와 카드로 보여 줌 */
 (function () {
   var BASE = 'https://dajihoya.github.io/scienceclass/';
-  var TOPICS = [['physics', '물리', '#FFC48C'], ['chemistry', '화학', '#B9E58C'], ['life-science', '생명과학', '#FF9DB5'], ['earth-science', '지구과학', '#9CC4FF']];
+  var TOPICS = [['physics', '물리', '#FFDDBF'], ['chemistry', '화학', '#D6EEC0'], ['life-science', '생명과학', '#FFD3DE'], ['earth-science', '지구과학', '#CFE1FF']];
   var ICONS = {
     'physics': '<svg viewBox="0 0 36 36"><path d="M20.5 3 8 20h9l-2 13 13-18h-9z" fill="#FFC48C" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/></svg>',
     'chemistry': '<svg viewBox="0 0 36 36"><path d="M14 5v9L6.5 27.5Q5 32 10 32h16q5 0 3.5-4.5L22 14V5z" fill="#fff" stroke="#2b2f55" stroke-width="2" stroke-linejoin="round"/><path d="M9.6 22h16.8l2.6 5.5Q30 31 26 31H10q-4 0-3-3.5z" fill="#B9E58C"/><path d="M12 4.5h12" stroke="#2b2f55" stroke-width="2.4" stroke-linecap="round"/></svg>'
