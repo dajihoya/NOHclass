@@ -92,6 +92,13 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 .ltab:focus-visible{outline:3px solid #FFE08A;outline-offset:2px;border-radius:6px}
 .board .sub > h3{display:none}
 .board .sub[hidden]{display:none}
+.board .ggrp + .ggrp{margin-top:22px}
+.board .gh{display:flex;align-items:center;gap:8px;font:inherit;font-size:21px;color:var(--chalk);background:none;border:0;padding:0;margin:0 0 14px;cursor:pointer}
+.board .gh .chev{font-size:13px;color:var(--chalk-dim);transition:transform .2s}
+.board .gh:focus-visible{outline:3px solid #FFE08A;outline-offset:3px;border-radius:6px}
+.board .ggrp.fold .gh{margin-bottom:0}
+.board .ggrp.fold .gh .chev{transform:rotate(-90deg)}
+.board .ggrp.fold .cards{display:none}
 /* 물화생지: 인덱스 탭 */
 .ltabs{gap:5px;border-bottom:0;flex-wrap:nowrap;margin-bottom:-20px}
 .ltab{opacity:1;align-self:flex-end;gap:7px;font-size:20px;color:#1E2236;-webkit-text-stroke:.6px currentColor;background:var(--tc);border:0;border-radius:12px 12px 0 0;margin:0;padding:6px 13px 7px 7px}
@@ -214,11 +221,23 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
       var a = document.createElement('a');
       a.className = 'card'; a.href = BASE + n.getAttribute('href'); a.target = '_blank'; a.rel = 'noopener';
       a.appendChild(document.importNode(hd, true));
+      a.dataset.grade = (n.dataset.grade || '').split(' ')[0];
       (groups[n.dataset.topic] = groups[n.dataset.topic] || []).push(a);
     });
     Object.keys(groups).forEach(function (t) {
-      var p = paneOf(t), sec = p && p.querySelector('.cards');
-      if (sec) sec.replaceChildren.apply(sec, groups[t]);
+      var p = paneOf(t); if (!p) return;
+      [].slice.call(p.querySelectorAll('.cards,.ggrp')).forEach(function (el) { el.remove(); });
+      ['1', '2', '3', ''].forEach(function (g) {
+        var l = groups[t].filter(function (a) { return a.dataset.grade === g || (g === '' && ['1', '2', '3'].indexOf(a.dataset.grade) < 0); });
+        if (!l.length) return;
+        var grp = document.createElement('div'); grp.className = 'ggrp';
+        var h = document.createElement('button'); h.type = 'button'; h.className = 'gh'; h.setAttribute('aria-expanded', 'true');
+        h.innerHTML = (g ? g + '학년' : '기타') + '<span class="chev" aria-hidden="true">▼</span>';
+        h.onclick = function () { var f = grp.classList.toggle('fold'); h.setAttribute('aria-expanded', f ? 'false' : 'true'); };
+        var cs = document.createElement('div'); cs.className = 'cards';
+        l.forEach(function (a) { cs.appendChild(a); });
+        grp.appendChild(h); grp.appendChild(cs); p.appendChild(grp);
+      });
     });
     buildTabs();
   }).catch(function () {});
