@@ -92,6 +92,12 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
 .ltab:focus-visible{outline:3px solid #FFE08A;outline-offset:2px;border-radius:6px}
 .board .sub > h3{display:none}
 .board .sub[hidden]{display:none}
+/* 물화생지: 인덱스 탭 */
+.ltabs{gap:4px;border-bottom:0;flex-wrap:nowrap;margin-bottom:-20px}
+.ltab{opacity:1;color:var(--chalk-dim);background:rgba(0,0,0,.24);border:0;border-top:4px solid var(--tc);border-radius:14px 14px 0 0;margin:0;padding:9px 16px 10px 10px}
+.ltab[aria-selected="true"]{color:var(--chalk);background:rgba(244,241,230,.1)}
+.ltab:not([aria-selected="true"]) .badge svg{opacity:.6}
+.board .sub{background:rgba(244,241,230,.1);border-radius:0 14px 14px 14px;padding:30px 16px 20px}
 .board .empty{color:var(--chalk-dim);margin:0;font-size:18px}
 
 @media (max-width:560px){
@@ -107,6 +113,9 @@ a.card b{font-weight:400;font-size:22.5px;line-height:1.25;word-break:keep-all;-
   .board a.card b{font-size:16.5px}
   .ltab{font-size:22px;gap:7px;padding:4px 6px 8px 2px}
   .ltab .badge{width:32px;height:32px;border-radius:10px}.ltab .badge svg{width:22px;height:22px}
+  .ltab{font-size:18px;padding:8px 9px 9px;flex:1;justify-content:center}
+  .ltab .badge{display:none}
+  .board .sub{padding:28px 10px 16px}
   .pic{width:34px;height:34px}.pic svg{width:23px;height:23px}.hd{gap:8px}
 }
 @media (prefers-reduced-motion:reduce){a.card{transition:none}}
